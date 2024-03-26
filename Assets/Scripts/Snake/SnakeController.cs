@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -101,4 +102,6 @@ public class SnakeController : MonoBehaviour
     {
         return snakeBody[0].transform;
     }
+
+    public int GetSnakeLevel() => _level;
 }

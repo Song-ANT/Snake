@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7355905574512039956}
   - component: {fileID: 3788137138739614885}
   - component: {fileID: -8498894661293957132}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SnakeHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6089087831441971383}
   - component: {fileID: 5777956522160499204}
-  - component: {fileID: 1964962804130181432}
-  - component: {fileID: -3832083633981914327}
+  - component: {fileID: 6629774681171437012}
   m_Layer: 0
-  m_Name: PlayerSnake
+  m_Name: EnemySnake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _betweenDistance: 0.2
---- !u!114 &1964962804130181432
+--- !u!114 &6629774681171437012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,36 +55,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7002580931051210100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b0de4a5658085142bdb7da0d569f473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 7014d8cb6b6d8fa438a2d4e615103072, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &-3832083633981914327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7002580931051210100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8d087a4ce4dca429677e24d0d24371, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _detectRange: 10
+  _moveSpeed: 8
