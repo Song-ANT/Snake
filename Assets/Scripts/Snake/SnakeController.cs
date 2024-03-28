@@ -11,6 +11,8 @@ public class SnakeController : MonoBehaviour
 {
     [SerializeField] private float _betweenDistance = 0.2f;
     private List<GameObject> snakeBody = new List<GameObject>();
+    private SnakeData snakeData;
+    private LvPanelUI lvUI;
 
     private int _level = 1;
     private int _isEatFood = 0;
@@ -18,8 +20,15 @@ public class SnakeController : MonoBehaviour
 
     public event Action OnEatFoodEvent;
 
+    private bool _isPlayer;
+    private Material _color;
+
     private void Awake()
     {
+        _isPlayer = transform.CompareTag(Define.ObjectName.player);
+        _color = _isPlayer ? Main.Resource.Load<Material>(Define.ObjectName.playerMaterial) :
+            Main.Resource.Load<Material>(Define.ObjectName.enemyMaterial);
+        snakeData = Main.Snake.AddSnakeData(_level);
         CreateBodyParts();
     }
 
@@ -50,9 +59,13 @@ public class SnakeController : MonoBehaviour
     {
         if(snakeBody.Count == 0)
         {
-            GameObject temp1 = Main.Resource.InstantiatePrefab("SnakeHead", transform);
-            temp1.tag = "Head";
+            GameObject temp1 = Main.Resource.InstantiatePrefab(Define.PrefabName.snakeHeadPrefab, transform);
+            temp1.GetComponent<MeshRenderer>().material = _color;
+            temp1.tag = Define.ObjectName.head;
 
+            lvUI = Main.UI.SetSubItemUI<LvPanelUI>(temp1.transform);
+            lvUI.SetLvText(_level.ToString());
+            lvUI.transform.position += Vector3.up;
             snakeBody.Add(temp1);
             return;
         }
@@ -68,7 +81,8 @@ public class SnakeController : MonoBehaviour
         _countUp += Time.deltaTime;
         if (_countUp > _betweenDistance)
         {
-            GameObject temp = Main.Resource.InstantiatePrefab("SnakeBody", transform);
+            GameObject temp = Main.Resource.InstantiatePrefab(Define.PrefabName.snakeBodyPrefab, transform);
+            temp.GetComponent<MeshRenderer>().material = _color;
             snakeBody.Add(temp);
             temp.GetComponent<SnakeMarker>().ClearMarkerList();
             temp.GetComponent<Snake>().SetSnakeBodyIndex(snakeBody.Count-1);
@@ -80,43 +94,47 @@ public class SnakeController : MonoBehaviour
     }
 
 
-    //public void 
-
     #region BeEatedMethod
     public void BeEatedHead()
     {
-        Debug.Log($"{gameObject.name} : ¸Ó¸®¸ÔÈû");
         for(int i = snakeBody.Count - 1; i >= 0; i--)
         {
             Destroy(snakeBody[i]);
+            BodyToFood(i);
         }
         snakeBody.Clear();
         Destroy(gameObject);
     }
 
+
     public void BeEatedBody(int index)
     {
-        Debug.Log($"{gameObject.name} : ¸öÅë¸ÔÈû");
         for (int i = snakeBody.Count - 1; i >= index; i--)
         {
             Destroy(snakeBody[i]);
-            var pos = snakeBody[i].transform.position;
-            var rot = snakeBody[i].transform.rotation;
-            GameObject food = Main.Resource.InstantiatePrefab("Food", pos, rot, true);
-            food.transform.position = pos;
-            food.transform.rotation = rot;
+            BodyToFood(i);
+
             snakeBody.RemoveAt(i);
         }
-        
+    }
 
+
+    private void BodyToFood(int i)
+    {
+        var pos = snakeBody[i].transform.position;
+        var rot = snakeBody[i].transform.rotation;
+        GameObject food = Main.Resource.InstantiatePrefab(Define.ObjectName.food, pos, rot, true);
+        food.transform.position = pos;
+        food.transform.rotation = rot;
     }
 
     #endregion
     public void AddBodyParts()
     {
-        //CreateBodyParts();
         _level++;
         _isEatFood++;
+        snakeData.level = _level;
+        lvUI.SetLvText(_level.ToString());
         OnEatFoodEvent?.Invoke();
     }
 

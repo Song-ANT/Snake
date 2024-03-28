@@ -27,11 +27,17 @@ public class Main : MonoBehaviour
 
     private readonly PoolManager _pool = new();
     private readonly ResourceManager _resource = new();
-    private readonly PlayerManager _player = new();
+    private readonly SnakeManager _snake = new();
     private readonly CinemachineManager _cinemachine = new();
+    private readonly SpawnManager _spawn = new();
+    private readonly GameManager _game = new();
+    private readonly UIManager _ui = new();
 
     public static PoolManager Pool => Instance?._pool;
     public static ResourceManager Resource => Instance?._resource;
-    public static PlayerManager Player => Instance?._player;
+    public static SnakeManager Snake => Instance?._snake;
     public static CinemachineManager Cinemachine => Instance?._cinemachine;
+    public static SpawnManager Spawn => Instance?._spawn;
+    public static GameManager Game => Instance?._game;
+    public static UIManager UI => Instance?._ui;
 }

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Food : MonoBehaviour, IEated
 {
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Head"))
-    //    {
-    //        SnakeController snake = other.transform.root.GetComponent<SnakeController>();
-    //        snake.AddBodyParts();
+    private int _plusFood;
 
-    //        Main.Pool.Push(gameObject);
-    //    }
-    //}
+
     public void Eated()
     {
         Main.Pool.Push(gameObject);
+        if(_plusFood == 0) Main.Spawn.InitIntantiateFood(1, Define.ObjectName.food);
+        else
+        {
+            _plusFood += 1;
+            if (_plusFood == 3) _plusFood =  0;
+        }
+
     }
 }

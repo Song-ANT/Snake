@@ -17,7 +17,7 @@ public class SnakePlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         // Movement 액션에 대한 콜백 등록
-        var movementAction = playerInput.actions["Movement"];
+        var movementAction = playerInput.actions[Define.ObjectName.movement];
         movementAction.performed += OnMovementStarted;
     }
 

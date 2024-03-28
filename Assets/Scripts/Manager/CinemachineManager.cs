@@ -11,7 +11,7 @@ public class CinemachineManager
 
     public void SetPlayerSnakeCamera(Transform player)
     {
-        var playerCameraObject = Main.Resource.InstantiatePrefab("PlayerSnakeCamera");
+        var playerCameraObject = Main.Resource.InstantiatePrefab(Define.PrefabName.playerSnakeCamera);
         _playerCamera = playerCameraObject.GetComponent<CinemachineVirtualCamera>();
         var playerSnakeCamera = _playerCamera.GetComponent<PlayerSnakeCamera>();
         playerSnakeCamera.Initialized(player);

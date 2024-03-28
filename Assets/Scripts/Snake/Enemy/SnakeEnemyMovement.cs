@@ -88,7 +88,7 @@ public class SnakeEnemyMovement : MonoBehaviour
         {
             foreach (var collider in overlapColliders)
             {
-                if (collider.name != "SnakeHead") continue;
+                if (collider.name != Define.PrefabName.snakeHeadPrefab) continue;
                 _detectSnake = collider.transform;
                 _otherSnakeController = _detectSnake.transform.root.GetComponent<SnakeController>();
 
@@ -148,7 +148,7 @@ public class SnakeEnemyMovement : MonoBehaviour
         //if(_otherSnakeHead != null) return INode.ENodeState.EFailure;
         if (_detectFood != null) return INode.ENodeState.ESuccess;
 
-        var overlapColliders = Physics.OverlapSphere(_snakeHead.position, _detectOtherSnakeRange, LayerMask.GetMask("Food"));
+        var overlapColliders = Physics.OverlapSphere(_snakeHead.position, _detectOtherSnakeRange, LayerMask.GetMask(Define.ObjectName.food));
         if (overlapColliders != null && overlapColliders.Length > 0)
         {
             _detectFood = overlapColliders[0].transform;

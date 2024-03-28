@@ -12,18 +12,16 @@ public class SnakeHead : Snake
         var otherRoot = other.transform.root;
         var myRoot = transform.root;
 
-        //Debug.Log($"otherName : {otherRoot.name}, myName : {myRoot.name}, " +
-        //    $"\n other : {otherRoot.GetInstanceID()}, my : {myRoot.GetInstanceID()}");
         
         if (otherRoot.GetInstanceID() == myRoot.GetInstanceID()) return;
 
-        if (other.CompareTag("Food"))
+        if (other.CompareTag(Define.ObjectName.food))
         {
             other.GetComponent<Food>().Eated();
             _controller.AddBodyParts();
         }
 
-        if (other.gameObject.CompareTag("Head") || other.gameObject.CompareTag("Body"))
+        if (other.gameObject.CompareTag(Define.ObjectName.head) || other.gameObject.CompareTag(Define.ObjectName.body))
         {
             SnakeController otherSnakeController = otherRoot.GetComponent<SnakeController>();
             int otherSnakeLevel = otherSnakeController.GetSnakeLevel();

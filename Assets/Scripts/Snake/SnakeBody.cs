@@ -8,7 +8,6 @@ public class SnakeBody : Snake
     public override void Eated()
     {
         base.Eated();
-        Debug.Log($"{_snakeBodyIndex} : ¸öÅëIndex");
         _controller.BeEatedBody(_snakeBodyIndex);
     }
 }

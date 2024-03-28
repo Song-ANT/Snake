@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6629774681171437012}
   m_Layer: 0
   m_Name: EnemySnake
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,5 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0de4a5658085142bdb7da0d569f473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectRange: 10
+  _detectOtherSnakeRange: 10
+  _detectFoodRange: 20
   _moveSpeed: 8

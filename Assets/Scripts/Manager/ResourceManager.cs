@@ -15,6 +15,7 @@ public class ResourceManager
 
         ResourcesToDictionary<GameObject>();
         ResourcesToDictionary<InputActionAsset>();
+        ResourcesToDictionary<Material>();
 
         // TODO 리소스폴더에서 쓰는 자료형 전부 적으세요. 리소스폴더안에 같은 파일명있어도 1개만 저장되니(추정) 주의
 
