@@ -17,6 +17,6 @@ public class CinemachineManager
         playerSnakeCamera.Initialized(player);
 
 
-        _playerCamera.LookAt = player;
+        
     }
 }

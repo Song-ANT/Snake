@@ -373,8 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283cb8f7e16923246b8c9a0ed344c361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initEnemyCount: 1
-  _initFoodCount: 100
 --- !u!4 &1337599715
 Transform:
   m_ObjectHideFlags: 0

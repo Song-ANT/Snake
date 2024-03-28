@@ -6,8 +6,8 @@ using static UnityEditor.PlayerSettings;
 
 public class GameScene : BaseScene
 {
-    [SerializeField] private int _initEnemyCount = 1;
-    [SerializeField] private int _initFoodCount = 100;
+    private int _initEnemyCount = 30;
+    private int _initFoodCount = 100;
 
     public override bool Initialize()
     {
@@ -31,8 +31,9 @@ public class GameScene : BaseScene
     {
         for (int i = 0; i < initCount; i++)
         {
-            float x = Random.Range(-50, 50);
-            float y = Random.Range(-50, 50);
+            Debug.Log($"{i} : {initCount}");
+            float x = Random.Range(-50f, 50f);
+            float y = Random.Range(-50f, 50f);
             GameObject enemy = Main.Resource.InstantiatePrefab(initObject, new Vector3(x, 0.5f, y), Quaternion.identity);
         }
     }
@@ -41,7 +42,6 @@ public class GameScene : BaseScene
     {
         for (int i = 0; i < initCount; i++)
         {
-            Debug.Log($"음식 만들어 : {i}, {initCount}");
             float x = Random.Range(-50f, 50f);
             float y = Random.Range(-50f, 50f);
 

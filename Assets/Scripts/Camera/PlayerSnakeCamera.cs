@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class PlayerSnakeCamera : MonoBehaviour
 {
-    private Transform _player;
-    private Vector3 _plusPosition;
-    private Quaternion _plusRotation;
+    public Transform followTarget;
+    public Vector3 offset;
+    public Vector3 lookDirection;
+
 
     public void Initialized(Transform player)
     {
-        _player = player;
-        _plusPosition = new Vector3(0, 15, -15);
-        _plusRotation = Quaternion.Euler(new Vector3(-45, 0, 0));
+        followTarget = player;
+        offset = new Vector3(0, 20, 0);
+        lookDirection = Vector3.down;
 
     }
 
-    private void Update()
+
+    void LateUpdate()
     {
-        if (_player != null)
-        {
-            transform.position = _player.position + _plusPosition;
-            transform.rotation = Quaternion.Euler(new Vector3(-35, 0, 0));
-        }
+        if (followTarget == null) return;
+
+        transform.position = followTarget.position + offset; // 카메라 위치 조정
+        transform.rotation = Quaternion.LookRotation(lookDirection); // 카메라 회전 고정
     }
 }
