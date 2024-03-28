@@ -28,8 +28,10 @@ public class Main : MonoBehaviour
     private readonly PoolManager _pool = new();
     private readonly ResourceManager _resource = new();
     private readonly PlayerManager _player = new();
+    private readonly CinemachineManager _cinemachine = new();
 
     public static PoolManager Pool => Instance?._pool;
     public static ResourceManager Resource => Instance?._resource;
     public static PlayerManager Player => Instance?._player;
+    public static CinemachineManager Cinemachine => Instance?._cinemachine;
 }

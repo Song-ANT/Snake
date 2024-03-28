@@ -2,10 +2,12 @@
 
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class GameScene : BaseScene
 {
-    [SerializeField] private int _enemyCount = 1;
+    [SerializeField] private int _initEnemyCount = 1;
+    [SerializeField] private int _initFoodCount = 100;
 
     public override bool Initialize()
     {
@@ -13,13 +15,11 @@ public class GameScene : BaseScene
 
         Main.Resource.InstantiatePrefab("Floor");
         GameObject player = Main.Resource.InstantiatePrefab("PlayerSnake");
-        for (int i = 0; i < _enemyCount; i++)
-        {
-            float x = Random.Range(-20f, 20f);
-            float y = Random.Range(-20f, 20f);
-            GameObject enemy = Main.Resource.InstantiatePrefab("EnemySnake", new Vector3(x, 0.5f, y), Quaternion.identity);
-            enemy.name = "EnemySnake" + i;
-        }
+        var head = player.GetComponent<SnakeController>().GetSnakehead();
+        Main.Cinemachine.SetPlayerSnakeCamera(head.transform);
+
+        InitIntantiateEnemy(_initEnemyCount, "EnemySnake");
+        InitIntantiateFood(_initFoodCount, "Food");
 
         StartCoroutine(SpawnFoodRoutine());
         
@@ -27,21 +27,40 @@ public class GameScene : BaseScene
     }
 
 
+    private void InitIntantiateEnemy(int initCount, string initObject)
+    {
+        for (int i = 0; i < initCount; i++)
+        {
+            float x = Random.Range(-50, 50);
+            float y = Random.Range(-50, 50);
+            GameObject enemy = Main.Resource.InstantiatePrefab(initObject, new Vector3(x, 0.5f, y), Quaternion.identity);
+        }
+    }
+
+    private void InitIntantiateFood(int initCount, string initObject)
+    {
+        for (int i = 0; i < initCount; i++)
+        {
+            Debug.Log($"음식 만들어 : {i}, {initCount}");
+            float x = Random.Range(-50f, 50f);
+            float y = Random.Range(-50f, 50f);
+
+            Vector3 pos = new Vector3(x, 0.5f, y);
+            Quaternion rot = Quaternion.identity;
+
+            GameObject food = Main.Resource.InstantiatePrefab(initObject, pos, rot, true);
+
+            food.transform.position = pos;
+            food.transform.rotation = rot;
+        }
+    }
+
     IEnumerator SpawnFoodRoutine()
     {
         while (true)
         {
 
-            float x = Random.Range(-20, 20);
-            float y = Random.Range(-20, 20);
-
-            Vector3 pos = new Vector3(x, 0.5f, y);
-            Quaternion rot = Quaternion.identity;
-
-            GameObject food = Main.Resource.InstantiatePrefab("Food", pos, rot, true);
-
-            food.transform.position = pos;
-            food.transform.rotation = rot;
+            InitIntantiateFood(1, "Food");
 
             yield return new WaitForSeconds(2f);
         }

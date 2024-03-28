@@ -77,7 +77,7 @@ public class ResourceManager
         return obj;
     }
 
-    public GameObject InstantiatePrefab(string key, Vector3 _position, Quaternion _rotate, bool pooling = false) // 플레이어매니저용
+    public GameObject InstantiatePrefab(string key, Vector3 _position, Quaternion _rotate, bool pooling = false) 
     {
         GameObject prefab = Load<GameObject>(key);
 

@@ -80,7 +80,6 @@ public class SnakeEnemyMovement : MonoBehaviour
     private INode.ENodeState CheckDetectOtherSnake()
     {
         if (_otherSnakeHead != null) return INode.ENodeState.ESuccess;
-        Debug.Log("다른 뱀 찾기");
 
         if(_isPursuitOtherSnake) return INode.ENodeState.EFailure;
 
@@ -126,12 +125,10 @@ public class SnakeEnemyMovement : MonoBehaviour
 
     private INode.ENodeState MoveToEatOtherSnake()
     {
-        Debug.Log("다른 뱀 다가가기");
         if (_otherSnakeHead != null)
         {
             moveDirection = (_otherSnakeHead.position - _snakeHead.position).normalized;
             RotateSnake();
-            Debug.Log("쫒아라");
             if (Vector3.Distance(_otherSnakeHead.position, _snakeHead.position) < 0.5f)
             {
                 _otherSnakeHead = null;
@@ -150,12 +147,10 @@ public class SnakeEnemyMovement : MonoBehaviour
     {
         //if(_otherSnakeHead != null) return INode.ENodeState.EFailure;
         if (_detectFood != null) return INode.ENodeState.ESuccess;
-        Debug.Log("음식찾기");
 
         var overlapColliders = Physics.OverlapSphere(_snakeHead.position, _detectOtherSnakeRange, LayerMask.GetMask("Food"));
         if (overlapColliders != null && overlapColliders.Length > 0)
         {
-            Debug.Log("Food");
             _detectFood = overlapColliders[0].transform;
             
             return INode.ENodeState.ESuccess;
@@ -170,20 +165,16 @@ public class SnakeEnemyMovement : MonoBehaviour
     {
         if (_detectFood != null)
         {
-            Debug.Log("음식다가가기");
             moveDirection = (_detectFood.position - _snakeHead.position).normalized;
             RotateSnake();
             if (Vector3.Distance(_detectFood.position, _snakeHead.position) < 0.5f)
-            {
-                Debug.Log("EatFood");   
+            {  
                 _detectFood = null;
                 return INode.ENodeState.ESuccess;
             }
-            Debug.Log("Running");
             return INode.ENodeState.ERunning;
         }
 
-        Debug.Log("Fail");
         return INode.ENodeState.EFailure;
     }
     #endregion
@@ -194,10 +185,8 @@ public class SnakeEnemyMovement : MonoBehaviour
     #region MoveRandom
     private INode.ENodeState MoveRandom()
     {
-        Debug.Log($"랜덤 움직이기 {_otherSnakeHead}, {_detectFood}");
         if (!_isRandomMoved)
         {
-            Debug.Log("랜덤 넣음");
             _isRandomMoved = true;
             moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
             RotateSnake();
