@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Define 
 {
+    public struct SceneName
+    {
+        public const string title = "TitleScene";
+        public const string game = "GameScene";
+    }
+
     public struct ObjectName
     {
         public const string food = "Food";
