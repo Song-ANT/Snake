@@ -24,6 +24,8 @@ public class GameSceneUI : UI_Scene
     private float _currentTime;
     private float _startTime;
 
+    private bool _isGameOver;
+
 
     public override bool Initialize()
     {
@@ -32,6 +34,7 @@ public class GameSceneUI : UI_Scene
         _currentTime = Time.time;
         _startTime = Define.startTime;
         BossLv.text = Define.BossLv.ToString();
+        _isGameOver = false;
 
         return true;
     }
@@ -41,7 +44,9 @@ public class GameSceneUI : UI_Scene
         float timeLeft = _startTime - (Time.time - _currentTime);
         if (timeLeft < 0)
         {
+            _isGameOver = true;
             Timer.text = "00:00";
+            if(_isGameOver) Main.UI.SetSceneUI<GameOverSceneUI>();
             return;
         }
 

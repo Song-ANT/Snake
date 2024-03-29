@@ -9,7 +9,7 @@ using static UnityEditor.PlayerSettings;
 
 public class SnakeController : MonoBehaviour
 {
-    [SerializeField] private float _betweenDistance = 0.2f;
+    [SerializeField] private float _betweenDistance = 0.1f;
     private List<GameObject> snakeBody = new List<GameObject>();
     private SnakeData snakeData;
     private LvPanelUI lvUI;
@@ -22,6 +22,8 @@ public class SnakeController : MonoBehaviour
 
     private bool _isPlayer;
     private Material _color;
+
+    public bool IsPlayer => _isPlayer;
 
     private void Awake()
     {

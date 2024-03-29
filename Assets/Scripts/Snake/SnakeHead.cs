@@ -39,6 +39,8 @@ public class SnakeHead : Snake
     {
         base.Eated();
         _controller.BeEatedHead();
+
+        if(_controller.IsPlayer) Main.UI.SetSceneUI<GameOverSceneUI>();
     }
 
 }

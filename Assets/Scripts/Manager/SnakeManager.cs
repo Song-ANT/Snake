@@ -47,9 +47,9 @@ public class SnakeManager
     }
 
 
-    //public SnakeData GetSnakeData(int index)
-    //{
-    //    return snakeDatas[index];
-    //}
+    public SnakeData GetSnakeData(int index)
+    {
+        return snakeDatas[index];
+    }
 
 }

@@ -21,7 +21,7 @@ public class BaseScene : MonoBehaviour
     {
         if (initialized) return false;
 
-        // 씬이 바뀔때마다 초기화하기때문에 main 인스턴스들은 안에 bool값을 만들어서 한번만 실행되게 해야합니다.
+        Time.timeScale = 1.0f;
 
 
         initialized = true;
