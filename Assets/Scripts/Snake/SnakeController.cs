@@ -28,7 +28,8 @@ public class SnakeController : MonoBehaviour
         _isPlayer = transform.CompareTag(Define.ObjectName.player);
         _color = _isPlayer ? Main.Resource.Load<Material>(Define.ObjectName.playerMaterial) :
             Main.Resource.Load<Material>(Define.ObjectName.enemyMaterial);
-        snakeData = Main.Snake.AddSnakeData(_level);
+        //snakeData = Main.Snake.AddSnakeData(_level);
+        snakeData = _isPlayer ? Main.Snake.AddSnakeData(_level, Define.ObjectName.player) : Main.Snake.AddSnakeData(_level);
         CreateBodyParts();
     }
 

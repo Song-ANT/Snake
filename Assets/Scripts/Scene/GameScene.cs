@@ -29,7 +29,8 @@ public class GameScene : BaseScene
         Main.Spawn.InitIntantiateFood(_initFoodCount, Define.ObjectName.food);
 
         // 게임 씬 UI생성
-        Main.UI.SetSceneUI<GameSceneUI>();
+        var gameSceneUI = Main.UI.SetSceneUI<GameSceneUI>();
+        gameSceneUI.Initialize();
 
         StartCoroutine(SpawnFoodRoutine());
         

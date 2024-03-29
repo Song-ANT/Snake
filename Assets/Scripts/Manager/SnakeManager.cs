@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public struct SnakeData
+public class SnakeData
 {
     public int index;
     public string name;
@@ -35,6 +35,17 @@ public class SnakeManager
         snakeDatas.Add(data);
         return data;
     }
+
+    public List<SnakeData> GetTopSnakes(int count)
+    {
+        // snakeDatas 리스트를 level이 높은 순으로 정렬
+        List<SnakeData> sortedSnakes = new List<SnakeData>(snakeDatas);
+        sortedSnakes.Sort((x, y) => y.level.CompareTo(x.level)); // 내림차순 정렬
+
+        // 상위 count개의 SnakeData를 반환
+        return sortedSnakes.GetRange(0, Mathf.Min(count, sortedSnakes.Count));
+    }
+
 
     //public SnakeData GetSnakeData(int index)
     //{

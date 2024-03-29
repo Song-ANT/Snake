@@ -25,4 +25,7 @@ public class Define
         public const string snakeBodyPrefab = "SnakeBody";
         public const string playerSnakeCamera = "PlayerSnakeCamera";
     }
+
+    public const int BossLv = 100;
+    public const int startTime = 90;
 }

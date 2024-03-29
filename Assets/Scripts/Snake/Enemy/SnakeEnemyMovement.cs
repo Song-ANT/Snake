@@ -12,7 +12,6 @@ public class SnakeEnemyMovement : MonoBehaviour
 {
     private Vector3 moveDirection;
     private BTRunner _btRunner = null;
-    private Transform _otherSnake = null;
 
     [SerializeField] private float _detectOtherSnakeRange = 10f;
     [SerializeField] private float _detectFoodRange = 150f;
