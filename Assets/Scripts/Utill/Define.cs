@@ -33,5 +33,5 @@ public class Define
     }
 
     public const int BossLv = 100;
-    public const int startTime = 90;
+    public const int startTime = 30;
 }
